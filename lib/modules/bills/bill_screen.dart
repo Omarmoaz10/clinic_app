@@ -11,7 +11,9 @@ import '../patient_register/cubit/cubit.dart';
 class BillScreenSec extends StatelessWidget {
   final PatientModel? patient;
   List<ProcedureModel>? procedures;
-  BillScreenSec({Key? key, this.patient, this.procedures}) : super(key: key) {}
+  double? totalCost;
+  BillScreenSec({Key? key, this.patient, this.procedures, this.totalCost})
+      : super(key: key) {}
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<PatientRegisterCubit, PatientRegisterStates>(
@@ -46,8 +48,10 @@ class BillScreenSec extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              const Center(
-                child: Text("Total Bill : 100 EGP"),
+              Center(
+                child: (totalCost == null)
+                    ? const Text("Total Bill : 100 EGP")
+                    : Text("Total Bill : $totalCost EGP"),
               ),
             ],
           ),

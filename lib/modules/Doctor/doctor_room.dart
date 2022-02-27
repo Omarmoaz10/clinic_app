@@ -173,7 +173,14 @@ class ExaminationRoom extends StatelessWidget {
                         patientDiagnosis,
                         patient!.uId,
                       );
-                      navigateTo(context, BillScreenSec(patient: patient,procedures: HomeCubit.get(context).selectedProcedures,));
+                      navigateTo(
+                          context,
+                          BillScreenSec(
+                            patient: patient,
+                            procedures:
+                                HomeCubit.get(context).selectedProcedures,
+                            totalCost: HomeCubit.get(context).totalPrice,
+                          ));
                     },
                     child: const Text(
                       'Post Diagnosis',

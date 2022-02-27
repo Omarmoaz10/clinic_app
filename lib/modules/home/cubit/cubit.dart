@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'dart:io';
 import 'package:clinic_app/models/Doctor_Assessment_model.dart';
 import 'package:clinic_app/models/patient_model.dart';
@@ -107,8 +108,11 @@ class HomeCubit extends Cubit<HomeStates> {
     emit(DeletePatientsSuccessState());
   }
 
+  double totalPrice = 0.0;
   void selectProcedure(bool selected, ProcedureModel p) {
-    (selected) ? selectedProcedures.add(p) : selectedProcedures.remove(p);
+    (selected)
+        ? {selectedProcedures.add(p), totalPrice = totalPrice + (p.cost)!}
+        : {selectedProcedures.remove(p), totalPrice = totalPrice - (p.cost)!};
     print(selectedProcedures.length);
     print(selected);
   }

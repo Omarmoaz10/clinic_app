@@ -15,7 +15,7 @@ class chipItems extends StatelessWidget {
     return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        return ChoiceChip(
+        return ActionChip(
             label: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -27,12 +27,12 @@ class chipItems extends StatelessWidget {
                 ),
               ],
             ),
-            selectedColor: Colors.blue,
-            disabledColor: Colors.blueGrey,
-            selected: _isSelected,
-            onSelected: (selected) {
-              _isSelected = selected;
-              
+            // selectedColor: Colors.blue,
+            // disabledColor: Colors.blueGrey,
+
+            onPressed: () {
+              _isSelected = !_isSelected;
+
               onPress!(_isSelected, model);
             });
       },
