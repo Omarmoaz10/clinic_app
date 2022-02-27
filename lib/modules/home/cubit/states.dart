@@ -51,7 +51,7 @@ class HomeGetAllPatientsErrorState extends HomeStates
   HomeGetAllPatientsErrorState(this.error);
 }
 
-//Updatepatients
+//updatePatients
 class UpdatePatientsLoadingState extends HomeStates {}
 class UpdatePatientsSuccessState extends HomeStates {}
 class UpdatePatientsErrorState extends HomeStates
@@ -60,7 +60,7 @@ class UpdatePatientsErrorState extends HomeStates
   UpdatePatientsErrorState(this.error);
 }
 
-//Deletepatients
+//DeletePatients
 class DeletePatientsLoadingState extends HomeStates {}
 class DeletePatientsSuccessState extends HomeStates {}
 class DeletePatientsErrorState extends HomeStates
@@ -71,11 +71,21 @@ class DeletePatientsErrorState extends HomeStates
 
 
 
-//Searchpatients
+//SearchPatients
 class SearchPatientsLoadingState extends HomeStates {}
 class SearchPatientsSuccessState extends HomeStates {}
 class SearchPatientsErrorState extends HomeStates
 {
   final String error;
   SearchPatientsErrorState(this.error);
+}
+
+
+//getProcedures
+class GetProcedureLoadingState extends HomeStates {}
+class GetProcedureSuccessState extends HomeStates {}
+class GetProcedureErrorState extends HomeStates
+{
+  final String error;
+  GetProcedureErrorState(this.error);
 }

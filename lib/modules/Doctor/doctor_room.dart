@@ -28,20 +28,20 @@ class ExaminationRoom extends StatelessWidget {
           appBar: AppBar(
             title: const Text("Doctor Room"),
             actions: [
-              TextButton(
-                onPressed: () {
-                  // var now = DateTime.now();
-                  // HomeCubit.get(context).createDiagnosis(
-                  //   dateTime: now.toString(),
-                  //   diagnosis: diagnosisController.text,
-                  // );
-                  // navigateTo(context, Home());
-                },
-                child: const Text(
-                  'Get Bill',
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
+              // TextButton(
+              //   onPressed: () {
+              //     // var now = DateTime.now();
+              //     // HomeCubit.get(context).createDiagnosis(
+              //     //   dateTime: now.toString(),
+              //     //   diagnosis: diagnosisController.text,
+              //     // );
+              //     // navigateTo(context, Home());
+              //   },
+              //   child: const Text(
+              //     'Get Bill',
+              //     style: TextStyle(color: Colors.black),
+              //   ),
+              // ),
             ],
           ),
           body: SingleChildScrollView(
@@ -63,20 +63,21 @@ class ExaminationRoom extends StatelessWidget {
                       const Text("Available Procedures"),
                       const SizedBox(height: 10.0),
                       Container(
-                        alignment: Alignment.topLeft,
+                        alignment: Alignment.center,
                         child: StreamBuilder<List<ProcedureModel>>(
                           stream: HomeCubit.get(context).readProcedures(),
                           builder: (context, snapshot) {
                             if (snapshot.hasError) {
-                              return const Text("Some went wrong");
+                              return Text("${snapshot.error}");
                             } else if (snapshot.hasData) {
                               final proceduresData = snapshot.data!;
-
+                              print(proceduresData.length);
                               return ListView.builder(
                                 itemCount: proceduresData.length,
                                 itemBuilder: (context, index) {
                                   final item = proceduresData[index];
-                                  return chipItems(model: item);
+                                  return chipItems(item,
+                                      HomeCubit.get(context).selectProcedure);
                                 },
                                 shrinkWrap: true,
                                 scrollDirection: Axis.vertical,
@@ -172,7 +173,7 @@ class ExaminationRoom extends StatelessWidget {
                         patientDiagnosis,
                         patient!.uId,
                       );
-                       navigateTo(context, BillScreenSec());
+                      navigateTo(context, BillScreenSec(patient: patient,procedures: HomeCubit.get(context).selectedProcedures,));
                     },
                     child: const Text(
                       'Post Diagnosis',

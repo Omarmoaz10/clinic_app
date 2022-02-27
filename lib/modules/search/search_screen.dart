@@ -2,6 +2,7 @@ import 'package:clinic_app/models/patient_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../models/search_model.dart';
+import '../../shared/component/patient_Info.dart';
 import '../home/cubit/cubit.dart';
 import '../home/cubit/states.dart';
 
@@ -56,18 +57,9 @@ class _SearchScreenState extends State<SearchScreen> {
                         itemCount: patientsSearch!.length,
                         itemBuilder: (context, index) {
                           final item = patientsSearch[index];
-                          return Card(
-                            child: Row(
-                              children: <Widget>[
-                                Text(
-                                  "${item.name}",
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                              ],
-                            ),
+                          return buildPatient(
+                            patient: item,
+                            nav: false,
                           );
                         },
                       );

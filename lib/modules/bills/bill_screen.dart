@@ -1,4 +1,5 @@
 import 'package:clinic_app/models/patient_model.dart';
+import 'package:clinic_app/models/procedure_model.dart';
 import 'package:clinic_app/modules/home/cubit/states.dart';
 import 'package:clinic_app/modules/patient_register/cubit/states.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,8 @@ import '../patient_register/cubit/cubit.dart';
 
 class BillScreenSec extends StatelessWidget {
   final PatientModel? patient;
-  BillScreenSec({Key? key, this.patient}) : super(key: key) {}
+  List<ProcedureModel>? procedures;
+  BillScreenSec({Key? key, this.patient, this.procedures}) : super(key: key) {}
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<PatientRegisterCubit, PatientRegisterStates>(
@@ -31,6 +33,17 @@ class BillScreenSec extends StatelessWidget {
                     : const Center(
                         child: Text("No data"),
                       ),
+              ),
+              Center(
+                child: ListView.builder(
+                  itemCount: procedures!.length,
+                  itemBuilder: (context, index) {
+                    final item = procedures![index];
+                    return Text("${item.name}");
+                  },
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                ),
               ),
               const SizedBox(height: 10),
               const Center(

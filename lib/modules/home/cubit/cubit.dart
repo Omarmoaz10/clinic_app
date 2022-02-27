@@ -19,7 +19,7 @@ class HomeCubit extends Cubit<HomeStates> {
   PatientModel? patientModel;
   ProcedureModel? procedureModel;
   SearchModel? searchModel;
-  List<ProcedureModel> selectedProcedures=[];
+  List<ProcedureModel> selectedProcedures = [];
   void getUserData() {
     emit(HomeGetUserLoadingState());
     FirebaseFirestore.instance.collection('users').doc(uId).get().then((value) {
@@ -41,28 +41,24 @@ class HomeCubit extends Cubit<HomeStates> {
           .toList());
 
   //Read procedures to show in DoctorScreen
-  Stream<List<ProcedureModel>> readProcedures(){ 
-    
-    return FirebaseFirestore.instance
+  Stream<List<ProcedureModel>> readProcedures() => FirebaseFirestore.instance
       .collection("procedures")
       .snapshots()
       .map((snapshot) => snapshot.docs
           .map((doc) => ProcedureModel.fromJson(doc.data()))
           .toList());
 
-}
-
-  String serchText = "";
+  String searchText = "";
   void search(name) {
     emit(SearchPatientsLoadingState());
-    serchText = name;
+    searchText = name;
     emit(SearchPatientsSuccessState());
   }
 
   Stream<List<PatientModel>>? searchPatient() {
     var f = FirebaseFirestore.instance
         .collection('patients')
-        .where("name", isEqualTo: serchText)
+        .where("name", isEqualTo: searchText)
         .snapshots()
         .map((snapshot) => snapshot.docs
             .map((doc) => PatientModel.fromJson(doc.data()))
@@ -110,7 +106,10 @@ class HomeCubit extends Cubit<HomeStates> {
     await docPatientDelete.delete();
     emit(DeletePatientsSuccessState());
   }
-  void selectProcdure(){
 
+  void selectProcedure(bool selected, ProcedureModel p) {
+    (selected) ? selectedProcedures.add(p) : selectedProcedures.remove(p);
+    print(selectedProcedures.length);
+    print(selected);
   }
 }
