@@ -11,10 +11,7 @@ class SocialLoginScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
-//  SocialLoginScreen(
-//     this.patient, 
-//   {Key? key}) : super(key: key);
-//   final PatientModel? patient;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -56,13 +53,6 @@ class SocialLoginScreen extends StatelessWidget {
                           style:
                               Theme.of(context).textTheme.headline4!.copyWith(
                                     color: Colors.black,
-                                  ),
-                        ),
-                        Text(
-                          'Login now to communicate with friends',
-                          style:
-                              Theme.of(context).textTheme.bodyText1!.copyWith(
-                                    color: Colors.grey,
                                   ),
                         ),
                         const SizedBox(

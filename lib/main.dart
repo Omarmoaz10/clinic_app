@@ -64,7 +64,7 @@ final Widget startWidget;
         builder: (context, state) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: Home(),
+            home: SocialLoginScreen(),
           );
         },
       ),

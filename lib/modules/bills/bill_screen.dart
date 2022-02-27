@@ -36,17 +36,19 @@ class BillScreenSec extends StatelessWidget {
                         child: Text("No data"),
                       ),
               ),
-              Center(
-                child: ListView.builder(
-                  itemCount: procedures!.length,
-                  itemBuilder: (context, index) {
-                    final item = procedures![index];
-                    return Text("${item.name}");
-                  },
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                ),
-              ),
+              (procedures != null)
+                  ? Center(
+                      child: ListView.builder(
+                        itemCount: procedures!.length,
+                        itemBuilder: (context, index) {
+                          final item = procedures![index];
+                          return Text("${item.name}");
+                        },
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                      ),
+                    )
+                  : const SizedBox(height: 10),
               const SizedBox(height: 10),
               Center(
                 child: (totalCost == null)
