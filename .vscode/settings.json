@@ -1,0 +1,12 @@
+{
+    "editor.tokenColorCustomizations": {
+        "comments": "",
+        "textMateRules": []
+    },
+    "cSpell.words": [
+        "constanse",
+        "firestore",
+        "Schadel",
+        "tojson"
+    ]
+}
